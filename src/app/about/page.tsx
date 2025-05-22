@@ -35,7 +35,7 @@ export default function AboutPage() {
               <Image
                 src="https://placehold.co/200x200.png" // Placeholder for Abhisek's photo
                 alt="Abhisek Sahu, Creator of Lumina Images"
-                data-ai-hint="portrait Abhisek Sahu" // AI hint for image replacement
+                data-ai-hint="creator portrait" // AI hint for image replacement
                 width={150}
                 height={150}
                 className="rounded-full shadow-md"
