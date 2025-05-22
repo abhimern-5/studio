@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, ChangeEvent, FormEvent } from 'react';
@@ -7,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, UploadCloud, Tags, Sparkles, Captions } from 'lucide-react'; // Changed FileText to Captions
+import { Loader2, UploadCloud, Tags, Sparkles, Captions, ClipboardCopy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { generateCaptionAndHashtags, GenerateCaptionAndHashtagsInput } from '@/ai/flows/generate-caption-and-hashtags-flow';
 import { Badge } from '@/components/ui/badge';
@@ -104,6 +105,24 @@ export default function CaptionGeneratorPage() {
     }
   };
 
+  const handleCopyToClipboard = (textToCopy: string, type: 'Caption' | 'Hashtags') => {
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+        toast({
+          title: `${type} Copied!`,
+          description: `${type} copied to clipboard.`,
+        });
+      })
+      .catch(err => {
+        console.error(`Failed to copy ${type.toLowerCase()}: `, err);
+        toast({
+          title: `Copy Error`,
+          description: `Could not copy ${type.toLowerCase()} to clipboard.`,
+          variant: 'destructive',
+        });
+      });
+  };
+
   return (
     <div className="space-y-8">
       <Card className="shadow-xl neon-glow-accent">
@@ -192,9 +211,14 @@ export default function CaptionGeneratorPage() {
           <CardContent className="space-y-6">
             {caption && (
               <div>
-                <h3 className="text-xl font-semibold mb-2 flex items-center">
-                  <Captions className="mr-2 h-5 w-5 text-primary" /> Generated Caption
-                </h3>
+                <div className="flex justify-between items-center mb-2">
+                    <h3 className="text-xl font-semibold flex items-center">
+                    <Captions className="mr-2 h-5 w-5 text-primary" /> Generated Caption
+                    </h3>
+                    <Button variant="ghost" size="sm" onClick={() => handleCopyToClipboard(caption, 'Caption')}>
+                        <ClipboardCopy className="mr-2 h-4 w-4" /> Copy
+                    </Button>
+                </div>
                 <Textarea
                   value={caption}
                   readOnly
@@ -205,9 +229,14 @@ export default function CaptionGeneratorPage() {
             )}
             {hashtags.length > 0 && (
               <div>
-                <h3 className="text-xl font-semibold mb-2 flex items-center">
-                  <Tags className="mr-2 h-5 w-5 text-primary" /> Generated Hashtags
-                </h3>
+                <div className="flex justify-between items-center mb-2">
+                    <h3 className="text-xl font-semibold flex items-center">
+                    <Tags className="mr-2 h-5 w-5 text-primary" /> Generated Hashtags
+                    </h3>
+                    <Button variant="ghost" size="sm" onClick={() => handleCopyToClipboard(hashtags.map(h => `#${h}`).join(' '), 'Hashtags')}>
+                        <ClipboardCopy className="mr-2 h-4 w-4" /> Copy
+                    </Button>
+                </div>
                 <div className="flex flex-wrap gap-2">
                   {hashtags.map((tag, index) => (
                     <Badge key={index} variant="secondary" className="text-sm px-3 py-1">
