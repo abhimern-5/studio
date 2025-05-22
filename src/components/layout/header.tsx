@@ -1,15 +1,19 @@
+
 'use client';
 
 import Link from 'next/link';
 import { UserButton, SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/common/logo';
-import { Wand2, Captions } from 'lucide-react'; // Added Captions icon
+import { Wand2, Captions, Menu as MenuIcon, X as XIcon } from 'lucide-react'; // Added MenuIcon and XIcon
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet'; // Added Sheet components
+import * as React from 'react';
 
 export function Header() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const navLinks = [
     { href: '/generate', label: 'Generate Image', icon: Wand2 },
@@ -21,6 +25,8 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
         <Logo />
+        
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -36,18 +42,66 @@ export function Header() {
             </Link>
           ))}
         </nav>
+
         <div className="flex items-center space-x-4">
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
           </SignedIn>
           <SignedOut>
             <SignInButton mode="modal">
-              <Button variant="outline" className="neon-glow-accent hover:neon-glow-accent">Sign In</Button>
+              <Button variant="outline" className="hidden sm:inline-flex neon-glow-accent hover:neon-glow-accent">Sign In</Button>
             </SignInButton>
             <SignInButton mode="modal" afterSignInUrl="/generate" afterSignUpUrl="/generate">
                <Button className="neon-glow-primary hover:neon-glow-primary">Get Started</Button>
             </SignInButton>
           </SignedOut>
+
+          {/* Mobile Navigation Trigger */}
+          <div className="md:hidden">
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <MenuIcon className="h-6 w-6" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[280px] sm:w-[320px]">
+                <SheetHeader className="mb-6">
+                  <SheetTitle>
+                    <Logo />
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col space-y-4">
+                  {navLinks.map((link) => (
+                    <SheetClose asChild key={link.href}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "flex items-center gap-3 rounded-md p-2 text-base transition-colors hover:bg-accent hover:text-accent-foreground",
+                          pathname === link.href ? "bg-accent text-accent-foreground font-semibold" : "text-foreground/80"
+                        )}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <link.icon size={20} />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </nav>
+                <div className="mt-8 pt-6 border-t border-border/40">
+                  <SignedOut>
+                    <div className="flex flex-col space-y-3">
+                       <SheetClose asChild>
+                        <SignInButton mode="modal">
+                          <Button variant="outline" className="w-full neon-glow-accent hover:neon-glow-accent">Sign In</Button>
+                        </SignInButton>
+                      </SheetClose>
+                    </div>
+                  </SignedOut>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>

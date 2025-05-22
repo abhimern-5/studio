@@ -34,7 +34,7 @@ export default function CaptionGeneratorPage() {
           description: 'File is too large (max 5MB).',
           variant: 'destructive',
         });
-        event.target.value = ''; // Reset file input
+        event.target.value = ''; 
         return;
       }
       setSelectedFile(file);
@@ -144,34 +144,29 @@ export default function CaptionGeneratorPage() {
             )}
 
             <div>
-              <span className="block text-sm font-medium text-foreground/80 mb-1"> {/* Changed from label to span as outer label is now functional */}
+              <span className="block text-sm font-medium text-foreground/80 mb-1">
                 Upload Image
               </span>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-border border-dashed rounded-md hover:border-primary transition-colors">
-                <label
-                  htmlFor="image-upload-input-clickable"
-                  className="block cursor-pointer w-full"
-                >
-                  <div className="space-y-1 text-center">
-                    <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-                    <div className="flex text-sm text-muted-foreground justify-center">
-                      <span className="font-medium text-primary hover:text-primary/80">
-                        Click here to upload a file
-                      </span>
-                      <p className="pl-1">or drag and drop</p>
-                    </div>
-                    <p className="text-xs text-muted-foreground">PNG, JPG, GIF, WEBP up to 5MB</p>
-                    <Input
-                      id="image-upload-input-clickable"
-                      name="image-upload"
-                      type="file"
-                      className="sr-only"
-                      accept="image/png, image/jpeg, image/webp, image/gif"
-                      onChange={handleFileChange}
-                    />
-                  </div>
-                </label>
-              </div>
+              {/* The label itself is now the styled dropzone */}
+              <label
+                htmlFor="image-upload-input-clickable"
+                className="mt-1 flex flex-col items-center justify-center w-full px-6 py-10 border-2 border-border border-dashed rounded-md cursor-pointer hover:border-primary transition-colors bg-secondary/10 hover:bg-secondary/20"
+              >
+                <UploadCloud className="h-12 w-12 text-muted-foreground mb-2" />
+                <span className="font-medium text-primary">
+                  Click to upload an image
+                </span>
+                <p className="text-sm text-muted-foreground mt-1">or drag and drop</p>
+                <p className="text-xs text-muted-foreground mt-2">PNG, JPG, GIF, WEBP up to 5MB</p>
+                <Input
+                  id="image-upload-input-clickable"
+                  name="image-upload"
+                  type="file"
+                  className="sr-only"
+                  accept="image/png, image/jpeg, image/webp, image/gif"
+                  onChange={handleFileChange}
+                />
+              </label>
             </div>
 
             {previewUrl && (
