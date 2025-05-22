@@ -1,5 +1,7 @@
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import AppLayout from "@/app/(app)/layout";
+import { ClientSideDateString } from "@/components/common/client-side-date-string";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -8,7 +10,7 @@ export default function PrivacyPolicyPage() {
         <Card className="shadow-lg">
           <CardHeader>
             <CardTitle className="text-3xl text-glow-primary">Privacy Policy</CardTitle>
-            <CardDescription>Last Updated: {new Date().toLocaleDateString()}</CardDescription>
+            <CardDescription>Last Updated: <ClientSideDateString /></CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 text-foreground/90">
             <p>
