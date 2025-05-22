@@ -41,7 +41,7 @@ export default function CaptionGeneratorPage() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewUrl(reader.result as string);
-        setError(null); 
+        setError(null);
       };
       reader.onerror = () => {
         setError('Failed to read file.');
@@ -80,7 +80,7 @@ export default function CaptionGeneratorPage() {
     try {
       const input: GenerateCaptionAndHashtagsInput = { imageDataUri: previewUrl };
       const result = await generateCaptionAndHashtags(input);
-      
+
       if (result.caption && result.hashtags) {
         setCaption(result.caption);
         setHashtags(result.hashtags);
@@ -144,31 +144,33 @@ export default function CaptionGeneratorPage() {
             )}
 
             <div>
-              <label htmlFor="image-upload-input" className="block text-sm font-medium text-foreground/80 mb-1">
+              <span className="block text-sm font-medium text-foreground/80 mb-1"> {/* Changed from label to span as outer label is now functional */}
                 Upload Image
-              </label>
+              </span>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-border border-dashed rounded-md hover:border-primary transition-colors">
-                <div className="space-y-1 text-center">
-                  <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-                  <div className="flex text-sm text-muted-foreground">
-                    <label
-                      htmlFor="image-upload-input"
-                      className="relative cursor-pointer rounded-md font-medium text-primary hover:text-primary/80 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-ring"
-                    >
-                      <span>Upload a file</span>
-                      <Input 
-                        id="image-upload-input" 
-                        name="image-upload" 
-                        type="file" 
-                        className="sr-only" 
-                        accept="image/png, image/jpeg, image/webp, image/gif"
-                        onChange={handleFileChange}
-                      />
-                    </label>
-                    <p className="pl-1">or drag and drop</p>
+                <label
+                  htmlFor="image-upload-input-clickable"
+                  className="block cursor-pointer w-full"
+                >
+                  <div className="space-y-1 text-center">
+                    <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
+                    <div className="flex text-sm text-muted-foreground justify-center">
+                      <span className="font-medium text-primary hover:text-primary/80">
+                        Click here to upload a file
+                      </span>
+                      <p className="pl-1">or drag and drop</p>
+                    </div>
+                    <p className="text-xs text-muted-foreground">PNG, JPG, GIF, WEBP up to 5MB</p>
+                    <Input
+                      id="image-upload-input-clickable"
+                      name="image-upload"
+                      type="file"
+                      className="sr-only"
+                      accept="image/png, image/jpeg, image/webp, image/gif"
+                      onChange={handleFileChange}
+                    />
                   </div>
-                  <p className="text-xs text-muted-foreground">PNG, JPG, GIF, WEBP up to 5MB</p>
-                </div>
+                </label>
               </div>
             </div>
 
@@ -186,9 +188,9 @@ export default function CaptionGeneratorPage() {
             )}
           </CardContent>
           <CardFooter>
-            <Button 
-              type="submit" 
-              disabled={isLoading || !selectedFile} 
+            <Button
+              type="submit"
+              disabled={isLoading || !selectedFile}
               className="w-full sm:w-auto neon-glow-primary hover:scale-105 transition-transform"
               size="lg"
             >
