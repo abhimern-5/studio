@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview AI agent for generating image captions and hashtags.
@@ -10,7 +11,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-export const GenerateCaptionAndHashtagsInputSchema = z.object({
+const GenerateCaptionAndHashtagsInputSchema = z.object({
   imageDataUri: z
     .string()
     .describe(
@@ -19,7 +20,7 @@ export const GenerateCaptionAndHashtagsInputSchema = z.object({
 });
 export type GenerateCaptionAndHashtagsInput = z.infer<typeof GenerateCaptionAndHashtagsInputSchema>;
 
-export const GenerateCaptionAndHashtagsOutputSchema = z.object({
+const GenerateCaptionAndHashtagsOutputSchema = z.object({
   caption: z.string().describe('A descriptive and engaging caption for the image (around 2-3 sentences).'),
   hashtags: z
     .array(z.string())

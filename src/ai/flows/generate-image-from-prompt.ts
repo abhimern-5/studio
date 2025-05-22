@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -25,6 +26,8 @@ export async function generateImage(input: GenerateImageInput): Promise<Generate
   return generateImageFlow(input);
 }
 
+// Note: The generateImagePrompt defined here is not used by generateImageFlow as it directly calls ai.generate.
+// It can be removed or kept if there are plans to use a prompt-based flow for image generation later.
 const generateImagePrompt = ai.definePrompt({
   name: 'generateImagePrompt',
   input: {schema: GenerateImageInputSchema},
@@ -48,6 +51,9 @@ const generateImageFlow = ai.defineFlow(
       },
     });
 
-    return {imageUrl: media.url!};
+    if (!media || !media.url) {
+        throw new Error('Image generation did not return a valid media URL.');
+    }
+    return {imageUrl: media.url};
   }
 );

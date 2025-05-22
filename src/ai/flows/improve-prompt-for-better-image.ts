@@ -1,3 +1,4 @@
+
 // src/ai/flows/improve-prompt-for-better-image.ts
 'use server';
 
@@ -45,9 +46,9 @@ You should provide an improved prompt, and explain your reasoning behind the cha
 
 Original Prompt: {{{prompt}}}
 
-Improved Prompt: {{improvedPrompt}}
-Reasoning: {{reasoning}}`,
+Please provide the improved prompt in the 'improvedPrompt' field and your reasoning in the 'reasoning' field.`,
 });
+
 
 const improvePromptFlow = ai.defineFlow(
   {
@@ -57,6 +58,9 @@ const improvePromptFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    if (!output) {
+      throw new Error('Failed to get prompt improvement suggestions. The AI model did not return an output.');
+    }
+    return output;
   }
 );
