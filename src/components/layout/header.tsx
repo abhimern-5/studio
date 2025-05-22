@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { UserButton, SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/common/logo';
-import { LayoutGrid, Wand2 } from 'lucide-react';
+import { Wand2, Captions } from 'lucide-react'; // Added Captions icon
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
@@ -12,7 +12,8 @@ export function Header() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/generate', label: 'Generate', icon: Wand2 },
+    { href: '/generate', label: 'Generate Image', icon: Wand2 },
+    { href: '/caption-generator', label: 'Generate Caption', icon: Captions },
     // Future: { href: '/gallery', label: 'Gallery', icon: LayoutGrid },
   ];
 
