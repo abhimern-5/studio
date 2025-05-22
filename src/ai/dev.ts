@@ -1,1 +1,5 @@
-// Flows will be imported for their side effects in this file.
+import { config } from 'dotenv';
+config();
+
+import '@/ai/flows/improve-prompt-for-better-image.ts';
+import '@/ai/flows/generate-image-from-prompt.ts';
