@@ -52,12 +52,14 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-semibold mb-12">
               Unleash Your Creativity
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {[
                 { src: "https://placehold.co/600x400.png", alt: "Abstract Art", dataAiHint: "abstract art" },
                 { src: "https://placehold.co/600x400.png", alt: "Futuristic City", dataAiHint: "futuristic city" },
                 { src: "https://placehold.co/600x400.png", alt: "Fantasy Landscape", dataAiHint: "fantasy landscape" },
                 { src: "https://placehold.co/600x400.png", alt: "AI Surreal Portrait", dataAiHint: "surreal portrait" },
+                { src: "https://placehold.co/600x400.png", alt: "Nature Macro", dataAiHint: "nature macro" },
+                { src: "https://placehold.co/600x400.png", alt: "Space Nebula", dataAiHint: "space nebula" },
               ].map((img, idx) => (
                 <div key={idx} className="rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300 neon-glow-accent group">
                   <Image
