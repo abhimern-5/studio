@@ -45,13 +45,13 @@ export default function RootLayout({
                     AI-powered image generation and 3D viewing.
                   </p>
                   <div className="mt-6 flex space-x-4">
-                    <Link href="#" aria-label="GitHub">
+                    <Link href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                       <Github className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
                     </Link>
-                    <Link href="#" aria-label="Twitter">
+                    <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                       <Twitter className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
                     </Link>
-                    <Link href="#" aria-label="LinkedIn">
+                    <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                       <Linkedin className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
                     </Link>
                   </div>
@@ -59,26 +59,26 @@ export default function RootLayout({
                 <div>
                   <h5 className="font-semibold text-foreground mb-4">Company</h5>
                   <ul className="space-y-2 text-sm">
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Careers</Link></li>
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Press</Link></li>
+                    <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
+                    <li><Link href="/careers" className="text-muted-foreground hover:text-primary transition-colors">Careers</Link></li>
+                    <li><Link href="/press" className="text-muted-foreground hover:text-primary transition-colors">Press</Link></li>
                   </ul>
                 </div>
                 <div>
                   <h5 className="font-semibold text-foreground mb-4">Resources</h5>
                   <ul className="space-y-2 text-sm">
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Docs</Link></li>
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Blog</Link></li>
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Support</Link></li>
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Contact Us</Link></li>
+                    <li><Link href="/docs" className="text-muted-foreground hover:text-primary transition-colors">Docs</Link></li>
+                    <li><Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">Blog</Link></li>
+                    <li><Link href="/support" className="text-muted-foreground hover:text-primary transition-colors">Support</Link></li>
+                    <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact Us</Link></li>
                   </ul>
                 </div>
                 <div>
                   <h5 className="font-semibold text-foreground mb-4">Legal</h5>
                   <ul className="space-y-2 text-sm">
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
-                    <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Cookie Policy</Link></li>
+                    <li><Link href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
+                    <li><Link href="/terms-of-service" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
+                    <li><Link href="/cookie-policy" className="text-muted-foreground hover:text-primary transition-colors">Cookie Policy</Link></li>
                   </ul>
                 </div>
               </div>
