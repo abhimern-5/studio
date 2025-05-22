@@ -3,13 +3,36 @@
 
 import Link from 'next/link';
 import { UserButton, SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
-import { Button } from '@/components/ui/button';
+import { Button, type ButtonProps } from '@/components/ui/button'; // Import ButtonProps
 import { Logo } from '@/components/common/logo';
-import { Wand2, Captions, Menu as MenuIcon, X as XIcon } from 'lucide-react'; // Added MenuIcon and XIcon
+import { Wand2, Captions, Menu as MenuIcon } from 'lucide-react'; 
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet'; // Added Sheet components
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet'; 
 import * as React from 'react';
+
+// Wrapper component to strip Clerk-specific props from being passed to the DOM element
+const ClerkPropStripperButton = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & {
+    // Clerk-specific props that might be passed down and cause warnings
+    mode?: 'redirect' | 'modal';
+    afterSignInUrl?: string;
+    afterSignUpUrl?: string;
+    // Other potential Clerk props can be added here if they cause similar warnings
+    // e.g., redirectUrl?: string;
+  }
+>(({
+  // Destructure and effectively ignore these Clerk-specific props
+  mode,
+  afterSignInUrl,
+  afterSignUpUrl,
+  // Spread the remaining props (which should be valid ButtonProps) to the ShadCN Button
+  ...restButtonProps
+}, ref) => {
+  return <Button ref={ref} {...restButtonProps} />;
+});
+ClerkPropStripperButton.displayName = 'ClerkPropStripperButton';
 
 export function Header() {
   const pathname = usePathname();
@@ -18,7 +41,6 @@ export function Header() {
   const navLinks = [
     { href: '/generate', label: 'Generate Image', icon: Wand2 },
     { href: '/caption-generator', label: 'Generate Caption', icon: Captions },
-    // Future: { href: '/gallery', label: 'Gallery', icon: LayoutGrid },
   ];
 
   return (
@@ -26,7 +48,6 @@ export function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
         <Logo />
         
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -49,14 +70,13 @@ export function Header() {
           </SignedIn>
           <SignedOut>
             <SignInButton mode="modal">
-              <Button variant="outline" className="hidden sm:inline-flex neon-glow-accent hover:neon-glow-accent">Sign In</Button>
+              <ClerkPropStripperButton variant="outline" className="hidden sm:inline-flex neon-glow-accent hover:neon-glow-accent">Sign In</ClerkPropStripperButton>
             </SignInButton>
             <SignInButton mode="modal" afterSignInUrl="/generate" afterSignUpUrl="/generate">
-               <Button className="neon-glow-primary hover:neon-glow-primary">Get Started</Button>
+               <ClerkPropStripperButton className="neon-glow-primary hover:neon-glow-primary">Get Started</ClerkPropStripperButton>
             </SignInButton>
           </SignedOut>
 
-          {/* Mobile Navigation Trigger */}
           <div className="md:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -93,9 +113,10 @@ export function Header() {
                     <div className="flex flex-col space-y-3">
                        <SheetClose asChild>
                         <SignInButton mode="modal">
-                          <Button variant="outline" className="w-full neon-glow-accent hover:neon-glow-accent">Sign In</Button>
+                          <ClerkPropStripperButton variant="outline" className="w-full neon-glow-accent hover:neon-glow-accent">Sign In</ClerkPropStripperButton>
                         </SignInButton>
                       </SheetClose>
+                      {/* The "Get Started" button is usually part of the main page content for mobile, or could be added here if desired */}
                     </div>
                   </SignedOut>
                 </div>
