@@ -1,3 +1,4 @@
+// src/app/(app)/generate/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -6,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Wand2, Lightbulb, Image as ImageIcon, CornerRightDown } from 'lucide-react';
+import { Loader2, Wand2, Lightbulb, Image as ImageIcon, CornerRightDown, Download } from 'lucide-react';
 import { generateImage, GenerateImageInput } from '@/ai/flows/generate-image-from-prompt';
 import { improvePrompt, ImprovePromptInput } from '@/ai/flows/improve-prompt-for-better-image';
 import ThreeJsImageViewer from '@/components/image/three-js-image-viewer';
@@ -101,6 +102,41 @@ export default function GeneratePage() {
     }
   }
 
+  const handleDownloadImage = () => {
+    if (!imageUrl) {
+      toast({
+        title: 'Download Error',
+        description: 'No image to download.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    try {
+      const link = document.createElement('a');
+      link.href = imageUrl;
+      // Extract extension from data URI if possible, default to png
+      const mimeTypeMatch = imageUrl.match(/^data:(image\/[a-zA-Z+]+);base64,/);
+      const extension = mimeTypeMatch && mimeTypeMatch[1] ? mimeTypeMatch[1].split('/')[1] : 'png';
+      link.download = `lumina-generated-image.${extension}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      toast({
+        title: 'Image Downloading',
+        description: 'Your image has started downloading.',
+      });
+    } catch (downloadError) {
+      console.error('Download error:', downloadError);
+      const errorMessage = downloadError instanceof Error ? downloadError.message : 'An unknown error occurred during download.';
+      setError(errorMessage);
+      toast({
+        title: 'Download Error',
+        description: errorMessage,
+        variant: 'destructive',
+      });
+    }
+  };
+
   return (
     <div className="space-y-8">
       <Card className="shadow-xl neon-glow-accent">
@@ -180,8 +216,16 @@ export default function GeneratePage() {
 
       {imageUrl && !isLoading && (
         <Card className="shadow-xl neon-glow-primary">
-          <CardHeader>
+          <CardHeader className="flex flex-row justify-between items-center">
             <CardTitle className="text-2xl text-glow-accent">Generated Image</CardTitle>
+            <Button 
+              onClick={handleDownloadImage} 
+              variant="outline" 
+              className="hover:neon-glow-accent transition-all"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Download Image
+            </Button>
           </CardHeader>
           <CardContent>
             <ThreeJsImageViewer imageUrl={imageUrl} />
