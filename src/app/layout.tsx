@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster'
 import Link from 'next/link'
 import { Logo } from '@/components/common/logo'
 import { Github, Linkedin, Twitter } from 'lucide-react'
+import { CurrentYear } from '@/components/common/current-year'; // Import the new component
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -83,7 +84,7 @@ export default function RootLayout({
                 </div>
               </div>
               <div className="mt-10 pt-8 border-t border-border/40 text-center text-sm text-muted-foreground">
-                Lumina Images &copy; {new Date().getFullYear()}. All rights reserved.
+                Lumina Images &copy; <CurrentYear />. All rights reserved.
               </div>
             </div>
           </footer>
