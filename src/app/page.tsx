@@ -51,12 +51,12 @@ export default function HomePage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {[
-              { src: "https://placehold.co/600x400.png", alt: "Abstract Art", dataAiHint: "abstract art" },
-              { src: "https://placehold.co/600x400.png", alt: "Futuristic City", dataAiHint: "futuristic city" },
-              { src: "https://placehold.co/600x400.png", alt: "Fantasy Landscape", dataAiHint: "fantasy landscape" },
-              { src: "https://placehold.co/600x400.png", alt: "AI Surreal Portrait", dataAiHint: "surreal portrait" },
-              { src: "https://placehold.co/600x400.png", alt: "Nature Macro", dataAiHint: "nature macro" },
-              { src: "https://placehold.co/600x400.png", alt: "Space Nebula", dataAiHint: "space nebula" },
+              { src: "https://placehold.co/600x400.png", alt: "AI Abstract", dataAiHint: "AI abstract" },
+              { src: "https://placehold.co/600x400.png", alt: "Cybernetic Dreams", dataAiHint: "cybernetic dream" },
+              { src: "https://placehold.co/600x400.png", alt: "Algorithmic Nature", dataAiHint: "algorithmic nature" },
+              { src: "https://placehold.co/600x400.png", alt: "Digital Surrealism", dataAiHint: "digital surrealism" },
+              { src: "https://placehold.co/600x400.png", alt: "Generated Worlds", dataAiHint: "generated world" },
+              { src: "https://placehold.co/600x400.png", alt: "Cosmic AI", dataAiHint: "cosmic AI" },
             ].map((img, idx) => (
               <div key={idx} className="rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300 neon-glow-accent group">
                 <Image
