@@ -8,13 +8,25 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import AppLayout from "@/app/(app)/layout";
 import { Mail, MessageSquare, User } from "lucide-react";
+import type React from 'react'; // Import React type for FormEvent
 
 export default function ContactPage() {
-  // Basic form submission handler (does not actually send email)
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert("Thank you for your message! We will get back to you soon. (This is a demo, no email was sent)");
-    // Here you would typically handle form submission, e.g., send data to a backend API
+    const form = event.currentTarget;
+    // In a real application, you would collect form data and send it to a backend API
+    // For example:
+    // const formData = new FormData(form);
+    // const name = formData.get('name');
+    // const email = formData.get('email');
+    // const subject = formData.get('subject');
+    // const message = formData.get('message');
+    // console.log({ name, email, subject, message });
+
+    alert(
+      `Thank you for your message! In a real application, this would be sent to sabhisek328@gmail.com. (This is a demo, no email was actually sent)`
+    );
+    form.reset(); // Reset the form fields after showing the alert
   };
 
   return (
@@ -34,20 +46,20 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="flex items-center"><User className="mr-2 h-4 w-4 text-primary" /> Full Name</Label>
-                  <Input id="name" type="text" placeholder="John Doe" required className="text-base" />
+                  <Input id="name" name="name" type="text" placeholder="John Doe" required className="text-base" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email" className="flex items-center"><Mail className="mr-2 h-4 w-4 text-primary" /> Email Address</Label>
-                  <Input id="email" type="email" placeholder="you@example.com" required className="text-base" />
+                  <Input id="email" name="email" type="email" placeholder="you@example.com" required className="text-base" />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="subject" className="flex items-center"><MessageSquare className="mr-2 h-4 w-4 text-primary" /> Subject</Label>
-                <Input id="subject" type="text" placeholder="Regarding..." required className="text-base" />
+                <Input id="subject" name="subject" type="text" placeholder="Regarding..." required className="text-base" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="message" className="flex items-center"><MessageSquare className="mr-2 h-4 w-4 text-primary" /> Your Message</Label>
-                <Textarea id="message" placeholder="Tell us more..." required rows={6} className="min-h-[120px] text-base" />
+                <Textarea id="message" name="message" placeholder="Tell us more..." required rows={6} className="min-h-[120px] text-base" />
               </div>
               <div>
                 <Button type="submit" size="lg" className="w-full md:w-auto neon-glow-primary hover:scale-105 transition-transform">
