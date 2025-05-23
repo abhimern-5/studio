@@ -32,14 +32,7 @@ export default function AboutPage() {
             </p>
             <h3 className="text-xl font-semibold text-glow-accent pt-4">Meet the Creator</h3>
             <div className="flex flex-col sm:flex-row items-center gap-6 pt-2">
-              <Image
-                src="https://placehold.co/200x200.png" // Placeholder for Abhisek's photo
-                alt="Abhisek Sahu, Creator of Lumina Images"
-                data-ai-hint="creator portrait" // AI hint for image replacement
-                width={150}
-                height={150}
-                className="rounded-full shadow-md"
-              />
+            
               <div className="text-center sm:text-left">
                 <h4 className="text-2xl font-semibold">Abhisek Sahu</h4>
                 <p className="text-primary">Founder & Lead Developer</p>

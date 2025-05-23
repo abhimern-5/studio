@@ -13,7 +13,7 @@ export default function BlogPage() {
       date: "November 20, 2023",
       excerpt: "Unlock the full potential of AI image generation by mastering the art of prompt engineering. Learn tips and tricks to translate your ideas into stunning visuals.",
       slug: "art-of-prompt-engineering",
-      image: "https://placehold.co/600x400.png",
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
       dataAiHint: "creative process",
       author: "AI Insights Team",
       tags: ["AI", "Prompting", "Creativity"],
@@ -24,7 +24,7 @@ export default function BlogPage() {
       date: "November 05, 2023",
       excerpt: "Discover how interactive 3D viewing transforms the way we experience digital art. Dive into the technology behind Lumina Images' immersive viewer.",
       slug: "3d-image-viewing-power",
-      image: "https://placehold.co/600x400.png",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
       dataAiHint: "3d model",
       author: "Tech Spotlight",
       tags: ["3D", "Visualization", "Technology"],
@@ -35,13 +35,12 @@ export default function BlogPage() {
       date: "October 30, 2023",
       excerpt: "We're excited to announce our latest update, bringing a wider range of artistic styles and significantly improved image generation speeds to Lumina Images.",
       slug: "feature-update-styles-speed",
-      image: "https://placehold.co/600x400.png",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
       dataAiHint: "software update",
       author: "Lumina Team",
       tags: ["Update", "Features", "Announcement"],
     },
   ];
-
   return (
     <AppLayout>
       <div className="space-y-8">

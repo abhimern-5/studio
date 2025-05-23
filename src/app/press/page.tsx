@@ -12,7 +12,7 @@ export default function PressPage() {
       date: "October 26, 2023",
       summary: "Lumina Images today announced the launch of its groundbreaking AI-powered image generation and 3D viewing platform, set to redefine creative workflows for artists and designers.",
       link: "#",
-      image: "https://placehold.co/600x400.png",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
       dataAiHint: "technology launch"
     },
     {
@@ -21,11 +21,10 @@ export default function PressPage() {
       date: "November 15, 2023",
       summary: "Enhancing user creativity, Lumina Images has released its new 'Prompt Assist' feature, providing AI-driven suggestions to help users craft the perfect prompts for stunning visuals.",
       link: "#",
-      image: "https://placehold.co/600x400.png",
+      image: "https://images.unsplash.com/photo-1581472723648-909f4851d4ae",
       dataAiHint: "AI interface"
     },
   ];
-
   return (
     <AppLayout>
       <div className="space-y-8">

@@ -21,7 +21,7 @@ export default function HomePage() {
           </p>
           <div className="space-x-4">
             <SignedOut>
-              <SignInButton mode="modal" afterSignInUrl="/generate" afterSignUpUrl="/generate">
+              <SignInButton mode="modal" redirectUrl="/generate">
                 <Button size="lg" className="neon-glow-primary hover:scale-105 transition-transform duration-300">
                   Get Started Free <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -43,36 +43,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Example Image Showcase */}
-      <section className="py-16 bg-background">
-        <div className="container px-4 mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-12">
-            Unleash Your Creativity
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {[
-              { src: "https://placehold.co/600x400.png", alt: "AI Abstract", dataAiHint: "AI abstract" },
-              { src: "https://placehold.co/600x400.png", alt: "Cybernetic Dreams", dataAiHint: "cybernetic dream" },
-              { src: "https://placehold.co/600x400.png", alt: "Algorithmic Nature", dataAiHint: "algorithmic nature" },
-              { src: "https://placehold.co/600x400.png", alt: "Digital Surrealism", dataAiHint: "digital surrealism" },
-              { src: "https://placehold.co/600x400.png", alt: "Generated Worlds", dataAiHint: "generated world" },
-              { src: "https://placehold.co/600x400.png", alt: "Cosmic AI", dataAiHint: "cosmic AI" },
-            ].map((img, idx) => (
-              <div key={idx} className="rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300 neon-glow-accent group">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  data-ai-hint={img.dataAiHint}
-                  width={600}
-                  height={400}
-                  className="w-full h-auto object-cover group-hover:opacity-90 transition-opacity"
-                />
-              </div>
-            ))}
-          </div>
+      {/* Image Showcase */}
+<section className="py-16 bg-background">
+  <div className="container px-4 mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl font-semibold mb-12">
+      Unleash Your Creativity
+    </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+      {[
+        { src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3", alt: "AI Abstract", dataAiHint: "AI abstract" },
+        { src: "https://images.unsplash.com/photo-1550745165-9bc0b252726f", alt: "Cybernetic Dreams", dataAiHint: "cybernetic dream" },
+        { src: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45", alt: "Algorithmic Nature", dataAiHint: "algorithmic nature" },
+        { src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab", alt: "Digital Surrealism", dataAiHint: "digital surrealism" },
+        { src: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23", alt: "Generated Worlds", dataAiHint: "generated world" },
+        { src: "https://images.unsplash.com/photo-1464802686167-b939a6910659", alt: "Cosmic AI", dataAiHint: "cosmic AI" },
+      ].map((img, idx) => (
+        <div key={idx} className="rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300 neon-glow-accent group">
+          <Image
+            src={img.src}
+            alt={img.alt}
+            data-ai-hint={img.dataAiHint}
+            width={600}
+            height={400}
+            className="w-full h-[400px] object-cover group-hover:opacity-90 transition-opacity"
+          />
         </div>
-      </section>
-
+      ))}
+    </div>
+  </div>
+</section>
       {/* Features Section */}
       <section id="features" className="py-20 md:py-32 bg-secondary/20">
         <div className="container px-4 mx-auto">
@@ -124,7 +123,7 @@ export default function HomePage() {
             Join Lumina Images today and start bringing your imagination to life.
           </p>
           <SignedOut>
-            <SignInButton mode="modal" afterSignInUrl="/generate" afterSignUpUrl="/generate">
+            <SignInButton mode="modal" redirectUrl="/generate">
               <Button size="lg" className="neon-glow-primary hover:scale-105 transition-transform duration-300">
                 Sign Up Now <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
