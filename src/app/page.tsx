@@ -117,7 +117,7 @@ export default function HomePage() {
       <section className="py-20 text-center bg-background">
         <div className="container px-4 mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
-            Ready to Create Magic?
+            Ready to Create ?
           </h2>
           <p className="text-lg text-foreground/80 mb-8 max-w-xl mx-auto">
             Join Lumina Images today and start bringing your imagination to life.

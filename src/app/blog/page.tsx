@@ -47,7 +47,7 @@ export default function BlogPage() {
         <Card className="shadow-lg">
           <CardHeader className="text-center">
             <CardTitle className="text-4xl text-glow-primary">Lumina Insights Blog</CardTitle>
-            <CardDescription className="text-lg">Discover articles, tips, and news about AI image generation and creative technology.</CardDescription>
+            <CardDescription className="text-lg">Discover articles,and news about AI image generation and creative technology.</CardDescription>
           </CardHeader>
         </Card>
 

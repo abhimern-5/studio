@@ -35,7 +35,7 @@ export default function AboutPage() {
             
               <div className="text-center sm:text-left">
                 <h4 className="text-2xl font-semibold">Abhisek Sahu</h4>
-                <p className="text-primary">Founder & Lead Developer</p>
+                <p className="text-primary">Lead Developer</p>
                 <p className="mt-2">
                   Abhisek Sahu is the visionary behind Lumina Images. With a deep interest in AI and a drive to build
                   intuitive, powerful tools, Abhisek developed this platform to bridge the gap between imagination

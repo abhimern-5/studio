@@ -31,7 +31,7 @@ export default function PressPage() {
         <Card className="shadow-lg">
           <CardHeader>
             <CardTitle className="text-3xl text-glow-primary">Press & Media</CardTitle>
-            <CardDescription>Latest news, announcements, and media resources for Lumina Images.</CardDescription>
+            <CardDescription>Latest news, announcements for Lumina Images.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 text-foreground/90">
             <p>
